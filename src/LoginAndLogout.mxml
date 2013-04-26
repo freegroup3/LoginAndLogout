@@ -16,4 +16,9 @@
 		<s:Label text="Code:"/>
 		<s:TextInput id="codeInput"/>
 	</s:HGroup>
+	<s:HGroup>
+		<s:Button id="LoginCofirm" label="登入"/>
+		<s:Button id="ClearInput" label="清除"/>
+	</s:HGroup>
+	
 </s:Application>
