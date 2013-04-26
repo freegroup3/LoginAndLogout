@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" xmlns:view="view.*">
-	<view:Login x="100" y="100"/>
+			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" 
+			   xmlns:view="view.*">
+	<s:layout>
+		<s:HorizontalLayout/>
+	</s:layout>
+	<view:Login/>
+	<view:Player/>
+	<view:Department/>
 </s:Application>
