@@ -7,6 +7,7 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.core.UIComponent;
+			import mx.events.SliderEvent;
 			
 			private var container:UIComponent;
 			private var video:Video;
@@ -19,11 +20,13 @@
 			private var ns_Receiver:NetStream;
 			
 			private var showlog:Boolean = true;
+			private var st:SoundTransform;
 			private function init():void
 			{
 //				傳出Stream的程式碼
 				cam = Camera.getCamera();
 				mic = Microphone.getMicrophone();
+				st = new SoundTransform( 0.5, 0);
 				
 				nc_Publisher = new NetConnection();
 				nc_Publisher.objectEncoding = ObjectEncoding.AMF0;
@@ -43,6 +46,8 @@
 				nc_Receiver.connect("rtmp://fms.2be.com.tw/live");
 				nc_Receiver.client = this;
 				nc_Receiver.addEventListener( NetStatusEvent.NET_STATUS, receiveStreamHandler);
+//				控制音量的部分
+				controlVolume.addEventListener(Event.CHANGE, controlSoundVolume);
 			}
 			private function publishStreamHandler(event:NetStatusEvent):void
 			{
@@ -60,6 +65,17 @@
 //				ns.addEventListener( NetStatusEvent.NET_STATUS, onNetStatusHandler );
 				video.attachNetStream( ns_Receiver );
 				ns_Receiver.play( "kkktt" );
+			}
+			private function closeCameraStream():void
+			{
+				ns_Publisher.attachCamera( null );
+				video.attachNetStream( null );
+				container.removeChild( video );
+			}
+			private function controlSoundVolume(event:SliderEvent):void
+			{
+				st.volume = event.value;
+				ns_Receiver.soundTransform = st;
 			}
 			public function onBWDone(...rest):void
 			{
@@ -106,4 +122,6 @@
 		]]>
 	</fx:Script>
 	<s:BorderContainer backgroundColor="#000000" id="videoPlaceHolder" width="320" height="450"/>
+	<s:Button id="stopCamera" label="關閉視訊" click="closeCameraStream()"/>
+	<s:HSlider id="controlVolume" width="100"/>
 </s:VGroup>
