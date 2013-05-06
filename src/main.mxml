@@ -1,12 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   minWidth="955" minHeight="600"
+			   initialize="showWindow()"
 			   xmlns:view="view.*">
-	<s:layout>
-		<s:HorizontalLayout/>
-	</s:layout>
-	<view:Login/>
-	<view:Player/>
-	<view:Department/>
+	<fx:Script>
+		<![CDATA[
+			import mx.core.IFlexDisplayObject;
+			import mx.managers.PopUpManager;
+			import view.LoginWindow;
+			
+			private function showWindow():void
+			{
+				var loginWindow:LoginWindow = LoginWindow(PopUpManager.createPopUp(this, LoginWindow, true));
+				loginWindow.x = 225;
+				loginWindow.y = 225;
+				
+				loginWindow.addEventListener("close", closeHandler);
+			}
+			
+			private function closeHandler(event:Event):void
+			{
+				event.target.removeEventListener("close", closeHandler);
+				PopUpManager.removePopUp( event.target as IFlexDisplayObject );
+			}
+		]]>
+	</fx:Script>
+	<s:BorderContainer id="outlineContainer" alpha="0" 
+					   backgroundColor="#000000"
+					   backgroundAlpha="0.5"
+					   x="100" y="70"
+					   width="700" height="500">
+		<s:layout>
+			<s:HorizontalLayout/>
+		</s:layout>
+		<view:Player/>
+		<view:Department/>
+	</s:BorderContainer>
 </s:Application>

@@ -10,23 +10,23 @@
 			import model.PlayerModel;
 			import servce.FMSservice;
 			
-			private var theService:FMSservice;
+			private var fmsService:FMSservice;
 			private var playerModel:PlayerModel;
-			private var theController:PlayerControl;
+			private var playerController:PlayerControl;
 			
 			private function init():void
 			{
-				theService = new FMSservice();
+				fmsService = new FMSservice();
 				playerModel = new PlayerModel();
-				theController = new PlayerControl(theService, playerModel);
+				playerController = new PlayerControl(fmsService, playerModel);
 				
-				videoPlaceHolder.addElement( theService.container );
+				videoPlaceHolder.addElement( fmsService.container );
 //				controlVolume
-				controlVolume.addEventListener(Event.CHANGE, theController.controlSoundVolume);
+				sliderVolumer.addEventListener(Event.CHANGE, playerController.controlSoundVolume);
 			}
 		]]>
 	</fx:Script>
 	<s:BorderContainer backgroundColor="#000000" id="videoPlaceHolder" width="320" height="450"/>
-	<s:Button id="stopCamera" label="關閉視訊" click="theController.closeCameraStream()"/>
-	<s:HSlider id="controlVolume" width="100"/>
+	<s:Button id="cameraCloser" label="關閉視訊" click="playerController.closeCameraStream()"/>
+	<s:HSlider id="sliderVolumer" width="100"/>
 </s:VGroup>

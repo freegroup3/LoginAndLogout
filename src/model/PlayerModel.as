@@ -11,7 +11,6 @@ package model
 		public function PlayerModel(target:IEventDispatcher=null)
 		{
 			super(target);
-
 		}
 	}
 }

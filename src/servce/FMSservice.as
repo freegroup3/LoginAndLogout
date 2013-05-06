@@ -8,6 +8,7 @@ package servce
 	import flash.net.NetStream;
 	import flash.net.ObjectEncoding;
 	import mx.core.UIComponent;
+	import view.Player;
 
 	public class FMSservice
 	{
@@ -30,6 +31,7 @@ package servce
 			
 //			broadcast Stream
 			nc_Publisher = new NetConnection();
+//			以後要改成AMF3 AMF0是給Flash Player 1或2 用的
 			nc_Publisher.objectEncoding = ObjectEncoding.AMF0;
 			nc_Publisher.connect("rtmp://fms.2be.com.tw/live");
 			nc_Publisher.client = this;
@@ -42,6 +44,7 @@ package servce
 			container.addChild( streamVideo );
 			
 			nc_Receiver = new NetConnection();
+//			以後要改成AMF3 AMF0是給Flash Player 1或2 用的
 			nc_Receiver.objectEncoding = ObjectEncoding.AMF0;
 			nc_Receiver.connect("rtmp://fms.2be.com.tw/live");
 			nc_Receiver.client = this;

@@ -1,9 +1,7 @@
 package control
 {
 	import flash.media.SoundTransform;
-	
 	import model.PlayerModel;
-	
 	import servce.FMSservice;
 
 	public class PlayerControl

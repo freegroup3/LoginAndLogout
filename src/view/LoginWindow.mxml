@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:TitleWindow xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx" 
+			   width="400" height="300"
+			   title="請輸入你的帳號和密碼">
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			
+			private function clearButtonClear():void
+			{
+				idInputer.text = "";
+				codeInputer.text = "";
+			}
+		]]>
+	</fx:Script>
+	<s:HGroup>
+		<s:Label text="ID:"/>
+		<s:TextInput id="idInputer"/>
+	</s:HGroup>
+	<s:HGroup>
+		<s:Label text="Code:"/>
+		<s:TextInput id="codeInputer" displayAsPassword="true"/>
+	</s:HGroup>
+	<s:HGroup>
+		<s:Button id="LoginConfirmer" label="登入"/>
+		<s:Button id="ClearInputer" label="清除" click="clearButtonClear()"/>
+	</s:HGroup>
+</s:TitleWindow>
