@@ -25,17 +25,17 @@ package servce
 		
 		public function FMSservice()
 		{
-//			傳出Stream的程式碼
 			cam = Camera.getCamera();
 			mic = Microphone.getMicrophone();
 			
+//			broadcast Stream
 			nc_Publisher = new NetConnection();
 			nc_Publisher.objectEncoding = ObjectEncoding.AMF0;
 			nc_Publisher.connect("rtmp://fms.2be.com.tw/live");
 			nc_Publisher.client = this;
 			nc_Publisher.addEventListener( NetStatusEvent.NET_STATUS, publishStreamHandler);
 			
-//			播出來的程式碼
+//			play back Stream
 			streamVideo = new Video(320,240);
 			streamVideo.name = "videoPlayer";
 			container = new UIComponent();
@@ -47,6 +47,7 @@ package servce
 			nc_Receiver.client = this;
 			nc_Receiver.addEventListener( NetStatusEvent.NET_STATUS, receiveStreamHandler);
 		}
+		
 		private function publishStreamHandler(event:NetStatusEvent):void
 		{
 			trace("publishStream the event code is", event.info.code);
@@ -56,6 +57,7 @@ package servce
 			ns_Publisher.attachAudio( mic );
 			ns_Publisher.publish("ttttt", "live");
 		}
+		
 		private function receiveStreamHandler( event:NetStatusEvent ):void
 		{
 			trace("receiveStreamHandler the event code is", event.info.code);
@@ -64,6 +66,7 @@ package servce
 			streamVideo.attachNetStream( ns_Receiver );
 			ns_Receiver.play( "kkktt" );
 		}
+		
 		public function onBWDone(...rest):void
 		{
 			trace('onBWDone();'+ rest, rest.length);
@@ -74,6 +77,7 @@ package servce
 				trace("\t"+i+":"+rest[i]);
 			}
 		}
+		
 		public function onMetaData(info:Object):void
 		{
 			trace('onMetaData');
@@ -85,6 +89,7 @@ package servce
 				trace(p, info[p]);
 			}
 		}
+		
 		public function onPlayStatus(info:Object):void
 		{
 			trace('onPlayStatus');
@@ -96,6 +101,7 @@ package servce
 				trace('*', p, info[p]);
 			}
 		}
+		
 		public function onXMPData(...rest):void
 		{
 			if (showlog == false) {

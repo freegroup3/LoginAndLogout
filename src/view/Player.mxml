@@ -11,17 +11,17 @@
 			import servce.FMSservice;
 			
 			private var theService:FMSservice;
-			private var _playerModel:PlayerModel;
+			private var playerModel:PlayerModel;
 			private var theController:PlayerControl;
 			
 			private function init():void
 			{
 				theService = new FMSservice();
-				_playerModel = new PlayerModel();
-				theController = new PlayerControl(theService, _playerModel);
+				playerModel = new PlayerModel();
+				theController = new PlayerControl(theService, playerModel);
 				
 				videoPlaceHolder.addElement( theService.container );
-//				控制音量的部分
+//				controlVolume
 				controlVolume.addEventListener(Event.CHANGE, theController.controlSoundVolume);
 			}
 		]]>

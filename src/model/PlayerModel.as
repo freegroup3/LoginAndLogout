@@ -6,12 +6,12 @@ package model
 	
 	public class PlayerModel extends EventDispatcher
 	{
-		public var st:SoundTransform;
 		
+//		temporarily leave, wait for use later
 		public function PlayerModel(target:IEventDispatcher=null)
 		{
 			super(target);
-			st = new SoundTransform;
+
 		}
 	}
 }
