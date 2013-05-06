@@ -25,6 +25,11 @@
 				event.target.removeEventListener("close", closeHandler);
 				PopUpManager.removePopUp( event.target as IFlexDisplayObject );
 			}
+			
+			private function changeContainerAlpha():void
+			{
+				outlineContainer.alpha = 1;
+			}
 		]]>
 	</fx:Script>
 	<s:BorderContainer id="outlineContainer" alpha="0" 

@@ -3,13 +3,22 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/mx" 
 			   width="400" height="300"
-			   title="請輸入你的帳號和密碼">
-	<s:layout>
-		<s:VerticalLayout/>
-	</s:layout>
+			   title="請輸入你的帳號和密碼"
+			   initialize="init()">
 	<fx:Script>
 		<![CDATA[
+			import control.LoginWindowControl;
+			import model.StaffModel;
 			import mx.managers.PopUpManager;
+			
+			private var loginWindowControl:LoginWindowControl;
+			private var staffModel:StaffModel;
+			
+			private function init():void
+			{
+				staffModel = new StaffModel();
+				loginWindowControl = new LoginWindowControl(staffModel);
+			}
 			
 			private function clearButtonClear():void
 			{
@@ -18,6 +27,9 @@
 			}
 		]]>
 	</fx:Script>
+	<s:layout>
+		<s:VerticalLayout/>
+	</s:layout>
 	<s:HGroup>
 		<s:Label text="ID:"/>
 		<s:TextInput id="idInputer"/>
@@ -27,7 +39,7 @@
 		<s:TextInput id="codeInputer" displayAsPassword="true"/>
 	</s:HGroup>
 	<s:HGroup>
-		<s:Button id="LoginConfirmer" label="登入"/>
+		<s:Button id="LoginConfirmer" label="登入" click="loginWindowControl.pressConfirmButton()"/>
 		<s:Button id="ClearInputer" label="清除" click="clearButtonClear()"/>
 	</s:HGroup>
 </s:TitleWindow>
