@@ -1,5 +1,8 @@
 package model
 {
+	import event.LoginAndPlayerEvent;
+	
+	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.events.IEventDispatcher;
 	
@@ -7,6 +10,10 @@ package model
 	{
 		public function StaffModel()
 		{
+		}
+		public function compareIdAndPassword():void
+		{
+			dispatchEvent(new Event( LoginAndPlayerEvent.LOGIN_SUCCESS ));
 		}
 	}
 }

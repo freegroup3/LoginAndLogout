@@ -22,11 +22,11 @@
 				
 				videoPlaceHolder.addElement( fmsService.container );
 //				controlVolume
-				sliderVolumer.addEventListener(Event.CHANGE, playerController.controlSoundVolume);
+				volumeSlider.addEventListener(Event.CHANGE, playerController.controlSoundVolume);
 			}
 		]]>
 	</fx:Script>
 	<s:BorderContainer backgroundColor="#000000" id="videoPlaceHolder" width="320" height="450"/>
 	<s:Button id="cameraCloser" label="關閉視訊" click="playerController.closeCameraStream()"/>
-	<s:HSlider id="sliderVolumer" width="100"/>
+	<s:HSlider id="volumeSlider" width="100"/>
 </s:VGroup>

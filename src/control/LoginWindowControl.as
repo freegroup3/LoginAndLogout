@@ -13,7 +13,7 @@ package control
 		
 		public function pressConfirmButton():void
 		{
-			trace("開始進行 登入人員的帳密比對過程");	
+			staffModel.compareIdAndPassword();
 		}
 		
 	}

@@ -3,30 +3,37 @@
 			   xmlns:s="library://ns.adobe.com/flex/spark" 
 			   xmlns:mx="library://ns.adobe.com/flex/mx" 
 			   minWidth="955" minHeight="600"
-			   initialize="showWindow()"
+			   initialize="init()"
 			   xmlns:view="view.*">
 	<fx:Script>
 		<![CDATA[
+			import event.LoginAndPlayerEvent;
+			import model.StaffModel;
 			import mx.core.IFlexDisplayObject;
 			import mx.managers.PopUpManager;
 			import view.LoginWindow;
+			
+			private function init():void
+			{
+				showWindow();
+			}
 			
 			private function showWindow():void
 			{
 				var loginWindow:LoginWindow = LoginWindow(PopUpManager.createPopUp(this, LoginWindow, true));
 				loginWindow.x = 225;
 				loginWindow.y = 225;
-				
 				loginWindow.addEventListener("close", closeHandler);
+				loginWindow.addEventListener( LoginAndPlayerEvent.CONTAINER_ALPHA_CHANGE, changeContainerAlpha );
 			}
 			
-			private function closeHandler(event:Event):void
+			private function closeHandler(evt:Event):void
 			{
-				event.target.removeEventListener("close", closeHandler);
-				PopUpManager.removePopUp( event.target as IFlexDisplayObject );
+				evt.target.removeEventListener("close", closeHandler);
+				PopUpManager.removePopUp( evt.target as IFlexDisplayObject );
 			}
 			
-			private function changeContainerAlpha():void
+			private function changeContainerAlpha(event:Event):void
 			{
 				outlineContainer.alpha = 1;
 			}
