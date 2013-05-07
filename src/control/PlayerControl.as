@@ -26,7 +26,6 @@ package control
 		
 		public function controlSoundVolume( value:int ):void
 		{
-			trace("Slider 傳出的 Value", value);
 			st.volume = value;
 			theService.ns_Receiver.soundTransform = st;
 		}

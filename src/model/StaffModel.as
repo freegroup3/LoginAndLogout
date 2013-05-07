@@ -14,6 +14,7 @@ package model
 		public function compareIdAndPassword():void
 		{
 			dispatchEvent(new Event( LoginAndPlayerEvent.LOGIN_SUCCESS ));
+//			dispatchEvent(new Event( LoginAndPlayerEvent.LOGIN_FAILED ));
 		}
 	}
 }
